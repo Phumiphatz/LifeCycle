@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     /** Dessert Data **/
+    private lateinit var dessertTimer : DessertTimer;
 
     /**
      * Simple data class that represents a dessert. Includes the resource id integer associated with
@@ -65,7 +66,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        dessertTimer = DessertTimer(this.lifecycle)
+        Timber.i("onCreate Called")
+        Log.i("MainActivity", "onCreate Called")
         // Use Data Binding to get reference to the views
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
@@ -80,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         // Make sure the correct dessert is showing
         binding.dessertButton.setImageResource(currentDessert.imageId)
         //Log.i("MainActivity", "onCreate Called")
-        Timber.i("onCreate Called")
+
     }
 
     /**
@@ -101,8 +104,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //Log.i("MainActivity", "onStart Called")
+        //dessertTimer.startTimer()
         Timber.i("onStart Called")
+        Log.i("MainActivity", "onStart Called")
     }
 
     /**
@@ -159,26 +163,37 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Timber.i("onResume Called")
+        Log.i("MainActivity", "onResume Called")
     }
 
     override fun onPause() {
         super.onPause()
         Timber.i("onPause Called")
-
+        Log.i("MainActivity", "onPause Called")
     }
 
     override fun onStop() {
         super.onStop()
+        //dessertTimer.stopTimer()
         Timber.i("onStop Called")
+        Log.i("MainActivity", "onStop Called")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Timber.i("onSaveInstanceState Called")
+        Log.i("MainActivity", "onSaveInstanceState Called")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         Timber.i("onDestroy Called")
+        Log.i("MainActivity", "onDestroy Called")
     }
 
     override fun onRestart() {
         super.onRestart()
         Timber.i("onRestart Called")
+        Log.i("MainActivity", "onRestart Called")
     }
 }
